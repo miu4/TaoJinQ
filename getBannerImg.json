@@ -1,1 +1,32 @@
-[{"uid":74,"banner_url":"http://images.qmtk.com/h5/banner_1.png","banner_sort":"1","create_time":"2017-12-28 09:44:35","update_time":"2020-12-28 09:44:35","link_url":"./popularity.html.","type":2},{"uid":78,"banner_url":"http://images.qmtk.com/h5/banner_2.png","banner_sort":"2","create_time":"2017-12-28 09:48:49","update_time":"2017-12-28 09:48:49","link_url":"./goods_list.html","type":2},{"uid":76,"banner_url":"http://images.qmtk.com/h5/banner_3.png","banner_sort":"3","create_time":"2017-12-28 09:46:17","update_time":"2017-12-28 09:46:17","link_url":"./9_9.html","type":2},{"uid":77,"banner_url":"http://images.qmtk.com/h5/banner_4.png","banner_sort":"4","create_time":"2017-12-28 09:43:22","update_time":"2017-12-28 09:43:22","link_url":"./clothing.html","type":2}]
+[0: {uid: 74, banner_url: "http://images.qmtk.com/h5/banner_1.png", banner_sort: "1",…}
+banner_sort: "1"
+banner_url: "http://images.qmtk.com/h5/banner_1.png"
+create_time: "2017-12-28 09:44:35"
+link_url: "./beauty.html"
+type: 2
+uid: 74
+update_time: "2017-12-28 09:44:35"
+1: {uid: 78, banner_url: "http://images.qmtk.com/h5/banner_2.png", banner_sort: "2",…}
+banner_sort: "2"
+banner_url: "http://images.qmtk.com/h5/banner_2.png"
+create_time: "2017-12-28 09:48:49"
+link_url: "./goods_list.html"
+type: 2
+uid: 78
+update_time: "2017-12-28 09:48:49"
+2: {uid: 76, banner_url: "http://images.qmtk.com/h5/banner_3.png", banner_sort: "3",…}
+banner_sort: "3"
+banner_url: "http://images.qmtk.com/h5/banner_3.png"
+create_time: "2017-12-28 09:46:17"
+link_url: "./9_9.html"
+type: 2
+uid: 76
+update_time: "2017-12-28 09:46:17"
+3: {uid: 77, banner_url: "http://images.qmtk.com/h5/banner_4.png", banner_sort: "4",…}
+banner_sort: "4"
+banner_url: "http://images.qmtk.com/h5/banner_4.png"
+create_time: "2017-12-28 09:43:22"
+link_url: "./clothing.html"
+type: 2
+uid: 77
+update_time: "2017-12-28 09:43:22"]
