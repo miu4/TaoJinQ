@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Keywords" content="">
+    <meta name="description" content=" ">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <!--<meta name="viewport" content="width=375,minimum-scale=0.4,maximum-scale=2,user-scalable=no">-->
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi">
+    <title>商品详情</title>
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/css/base.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/css/pull.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/h5_goods_details_page.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="footer">
+    <div id="copy">一键复制</div>
+    <a class="immediately" id="goTaobao">立即购买</a>
+</div>
+
+<div style="position: fixed;top: 0;left: 0;width: 100%;height: 100%;background:rgba(0,0,0,0.8);z-index: 100 ;display: none" id="iphone">
+    <img src="http://wechat.qmtk.com/static/v02/img/details_iphone.png" alt=""style="width: 76px;height: 79px;float: right;margin-right: 25px;margin-top: 20px;">
+    <div style="font-size: 17px;color: #fff;float: right;text-align: center;line-height: 30px;margin-top: 100px;font-family: 'Microsoft YaHei'">点击右上角<br>选择在浏览器中打开</div>
+</div>
+
+<div  id="wrapper" class="clearfix" style=" left: 0px;">
+    <div class=" wrapper-inner clearfix pr" id="scroller">
+        <div class="img_link">
+            <div class="img_icon">
+                <a href="javascript:window.history.back()" class="back fl"></a>
+                <a href="index.html" class="moreMenu fr"></a>
+            </div>
+            <img src="" alt="" class="banner_img" id="good_picture">
+        </div>
+        <div class="details_cont">
+            <p id="good_title">商品名称</p>
+            <div class="details_span">
+                <span class="price fl" style="font-size: 21px;color: #E51739"><span style="color: #333;font-size: 14px;">券后价</span><span id="quanhoujia"></span></span>
+
+                <div>
+                    <b style="width: 19px;height: 17px;"></b><span class="inlineBlock borBox" id="youhuiquanjia"></span>
+                </div>
+
+
+                <div id="fanlijine" style="color: #000">
+                    <i></i>
+                </div>
+
+            </div>
+            <div class="details_explain" id="marketing_word">
+
+            </div>
+        </div>
+        <div class="command">
+            <input type="hidden" name="taokoulin" id="taokoulin" value="">
+            <input type=hidden id="coupon_click_url" value=""/>
+            <input type=hidden id="short_url" value=""/>
+            <input type=hidden id="url" value=""/>
+            <div class="command-title"><span></span></div>
+            <div class="command-cont">
+                <div class="command-copy">
+                    <p id="coupon_taokoulin"></p>
+                </div>
+                <div class="ac">
+                    <button class="key-copy">一键复制</button>
+                </div>
+                <div class="command-tip">
+                    提示：1、点击一键复制按钮，打开「手机淘宝」进行购买
+                    <p style="margin-left: 36px;">2、若点击『一键复制』失败，请手动复制淘口令</p>
+                    <p style="margin-left: 36px;">3、若手机未下载「手机淘宝」，可选择『领券购买』方式</p>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="page" value="1">
+        <input type="hidden" id="category" value="">
+    </div>
+</div>
+<!-- 遮罩 -->
+<div class="popup-tip-warp hide " id="popup-tip-warp">
+    <div class="popup-tip">
+        <div class="popup-tip-top-bg">
+            <span class="close"></span>
+            请点击右上角 <img src="http://wechat.qmtk.com/static/img/iphone.png" alt="" class="icon-phone">
+            <p>并选择 <span class="popup-tip-color">在Safari中打开</span> 即可下单</p>
+        </div>
+        <div class="popup-tip-bottom">
+            <div class="line-dashed pr">
+                <p id="coupon_taokoulin2">淘口令</p>
+            </div>
+            <div class="tip-popup">
+                提示：1、点击『一键复制』按钮，打开「手机淘宝」
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进行购买 <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、若点击『一键复制』失败，请手动复制淘口令
+            </div>
+            <button  class="popup-tip-btn ">一键复制</button>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="http://wechat.qmtk.com/static/js/jquery-3.0.0.min.js"></script>
+<script src="http://wechat.qmtk.com/static/js/pull.js"></script>
+<script src="http://wechat.qmtk.com/static/js/clipboard.min.js"></script>
+<script src="http://wechat.qmtk.com/static/personalcms/js/h5/mobileOrPc3.js"></script>
+<script src="user.js"></script>
+<script>
+
+    $("#copy").click(function () {
+        $(".popup-tip-warp").removeClass("hide");
+    })
+    // 关闭弹窗
+    $(".close").click(function () {
+        $(".popup-tip-warp").addClass("hide");
+        //可以滚动
+        document.documentElement.style.overflow = "visible";
+    })
+    $(".popup-tip-warp").click(function (e) {
+        if (e.target.id === "popup-tip-warp") {
+            $(".popup-tip-warp").addClass("hide");
+            //可以滚动
+            document.documentElement.style.overflow = "visible";
+        }
+    })
+    // 显示 弹窗 点击领卷购买
+    $(".immediately").click(function () {
+        var short_url =$("#short_url").val();
+        var url ="https://t.asczwa.com/taobao?backurl=" +short_url;
+
+    })
+    if (!isIOS()) {
+        $(".icon-phone").attr("src", "http://wechat.qmtk.com/static/img/Android.png");
+        $(".popup-tip-color").html("在浏览器打开");
+//        $(".details_span b").css({"marginTop":"-2px"});
+    }else{
+        $("borBox").css({"lineHeight":"15px"});
+    }
+
+    /*回到顶部*/
+    $('.slide-top').click(function(){
+        $(document).scrollTop(0)
+    });
+
+    //判断是安卓还是苹果
+    function isIOS() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (/iphone|ipad|ipod/.test(ua)) {
+            return true;
+        } else if (/android/.test(ua)) {
+            return false;
+        }
+    }
+    // 点击页面的时候 都改变文字
+    //弹出框的一键复制
+
+    $('.key-copy').click(function () {
+        $(".key-copy").attr("data-clipboard-text", $("#taokoulin").val());
+        var _this=$(this);
+        copyFunction1(".key-copy",_this);
+        //只在有优惠券的时候执行
+        var taokoulin = $("#coupon_taokoulin").val();
+    });
+    $('.popup-tip-btn').click(function () {
+        $(".popup-tip-btn").attr("data-clipboard-text", $("#taokoulin").val());
+        var _this=$(this);
+        copyFunction1(".popup-tip-btn",_this);
+    });
+
+    var copyFunction1 = function (password,_this) {
+
+        var clipboard = new Clipboard(password);
+        clipboard.on('success', function (e) {
+            _this.addClass("popup-tip-btn-active");
+            _this.html("复制成功");
+        });
+        clipboard.on('error', function (e) {
+            _this.addClass("popup-tip-btn-active");
+            _this.html("复制失败");
+            alert('请选择“拷贝”进行复制!');
+        });
+    }
+
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+
+    $(document).ready(function(){
+     /*   console.log(window.location.href);
+        var url = GetUrlRelativePath();*/
+        show_good();
+//        goodList();
+
+    });
+    function show_good(){
+       var pid = getQueryString('p');
+        var parm ={
+          user_id:user_id,
+          qmtk_good_id:getQueryString('qmtk_good_id'),
+		  pid:null != pid ? pid :null,
+          appkey:appkey
+        };
+        $.ajax({
+            url:"http://www.qmtk.com/cms/searchTkGoodsByGet",
+            type:'get',
+            data:parm,
+            success:show_good_back
+        });
+    }
+   function show_good_back(data){
+        if(data != null && data != ""){
+            var coupon_taokoulin = data.coupon_taokoulin;
+            var coupon_taokoulin2 = data.coupon_taokoulin;
+            $('#coupon_taokoulin').html(coupon_taokoulin);
+            $('#coupon_taokoulin2').html(coupon_taokoulin2);
+            $('#taokoulin').val(coupon_taokoulin2);
+            $('#good_picture').attr('src',data.pict_url);
+            $('#quanhoujia').html(data.zk_final_price.toFixed(2));//quanhoujia
+            $('#youhuiquanjia').html(data.coupon_price.toFixed(2));
+            $('#marketing_word').html(data.marketing_word);
+            $('#good_title').html(data.title);
+            $('#category').val(data.category);
+            $("#coupon_click_url").val(data.coupon_click_url);
+            getShortUrl();
+        }else{
+            //window.location.href="sold_out.html";
+        }
+
+       /*  $('#fanlijine').html("<i></i>"+111);*/
+   }
+
+//   获取淘宝短链
+   function getShortUrl(){
+       var coupon_click_url = $("#coupon_click_url").val();
+       $.ajax({
+           url:"http://wechat.qmtk.com/ali/getShortUrl",
+           data:{coupon_click_url:coupon_click_url},
+           type:"post",
+           success:function(data){
+               var ua = navigator.userAgent.toLowerCase();
+               var url ="https://t.asczwa.com/taobao?backurl=" +data;
+               if( /iphone|ipad|ipod/i.test(ua) && ua.match(/MicroMessenger/i) == 'micromessenger' ) {
+
+               }else if( /iphone|ipad|ipod/i.test(ua)){
+                   $("#goTaobao").attr("href",url);
+               }else{
+                   url = "http://wechat.qmtk.com/ali/wx?redirectUrl="+url;
+                   $("#goTaobao").attr("href",url);
+               }
+
+           }
+       })
+   }
+
+
+   $("#goTaobao").click(function () {
+       var ua = navigator.userAgent.toLowerCase();
+       if (/iphone|ipad|ipod/.test(ua) && ua.match(/MicroMessenger/i) == 'micromessenger' ){
+           $("#iphone").show();
+       }
+   })
+
+    $("#iphone").click(function () {
+        $("#iphone").hide();
+    })
+   
+    function GetUrlRelativePath(){
+        var url = document.location.toString();
+        var arrUrl = url.split("//");
+
+        var start = arrUrl[1].indexOf("/");
+        var relUrl = arrUrl[1].substring(start);//stop省略，截取从start开始到结尾的所有字符
+
+        if(relUrl.indexOf("?") != -1){
+            relUrl = relUrl.split("?")[0];
+        }
+        return relUrl;
+    }
+</script>
+
+</html>

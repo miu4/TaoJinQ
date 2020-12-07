@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分类</title>
+    <!--清楚缓存，禁止调取，桌面小图标标题-->
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="apple-mobile-web-app-title" content="首页">
+    <!--内核模式，渲染模式、适配-->
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=375,minimum-scale=0.4,maximum-scale=2,user-scalable=no">
+    <!--公用部分-->
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/base.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/pull.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/swiper.min.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/h5_public_goodList.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/h5_public_col.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/h5_index.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/h5_good_list.css">
+
+</head>
+<body>
+<div class="main">
+    <!-- 头部-->
+    <div class="top">
+        <div class="main-title clearfix">
+            <a href="index.html" class="main-back"></a>
+            <div class="menu-cat" onclick="show_menu()"><span id="category_name"></span></div>
+        </div>
+        <ul class="select-warp" style="top: 44px;">
+            <li id="zhonghepaixu" class="li_active"><a href="javascript:void(0)" onclick="comprehensive()">综合排序</a></li>
+            <li id="xiaoliang"><a href="javascript:void(0)" onclick="salesVolume()">销量</a></li>
+            <li id="jiage" class="price"><a href="javascript:void(0)" onclick="priceOrder()">价格
+                <div class="fr"><i id="up"></i><i id="down"></i></div>
+            </a></li>
+            <li class=" filtr" style="float: right;">
+                <a href="javascript:void(0)" onclick="screenShow()"><span>筛选</span><img src="http://wechat.qmtk.com/static/personalcms/images/h5/shaixuan.png" alt=""></a>
+            </li>
+        </ul>
+    </div>
+    <div id="wrapper" class=" clearfix" style="margin-top:78px;">
+        <input type="hidden" id="sorting" value="0">
+        <input type="hidden" id="category">
+        <input type="hidden" id="page" value="1">
+        <input type="hidden" id="user_type">
+        <ul class="goods-warp clearfix wrapper-inner" id="good_list">
+            <div id="pullUp" class="loading">
+                <span class="pullUpIcon"></span><span class="pullUpLabel">加载更多...</span>
+            </div>
+        </ul>
+        <div class="null hide" id="null">
+            <img src="http://wechat.qmtk.com/static/img/null.png" alt="" class="null-img">
+            <p>抱歉，没有相关宝贝</p>
+            <p>去下面逛逛</p>
+            <a href="index.html">进入首页</a>
+        </div>
+    </div>
+</div>
+
+
+<!--遮罩-->
+<div class="slide-top">
+    <img src="http://wechat.qmtk.com/static/personalcms/images/h5/top.png" alt="">
+</div>
+<div class="screening-cover-warp hide" id="screening-cover-warp">
+    <div class="screening-cover clearfix">
+        <p class="goods-title">搜索渠道</p>
+        <ul class="clearfix goods_ul">
+            <li id="suoyou" class="li_active" onclick="putUser_type()">所有</li>
+            <li id="taobao" onclick="putUser_type(0)">淘宝</li>
+            <li id="tianmao" onclick="putUser_type(1)">天猫</li>
+        </ul>
+        <div class="price-range">
+            <p>价格</p>
+            <s id="clear_start_price" class="hide"></s>
+            <input type="text" placeholder="输入最低价格" id="zk_final_price_start"><i></i><input type="text" placeholder="输入最高价格"
+                                                                                          id="zk_final_price_end">
+            <s id="clear_end_price" class="hide"></s>
+        </div>
+
+        <div class="screening-footer">
+            <span id="reset">重置</span>
+            <span class="sure" id="sure">确定</span>
+        </div>
+    </div>
+</div>
+<nav id="show-top-menu" class="hide" style="z-index: 12;">
+    <div class="mask show" id="menu-mask"></div>
+    <div class="menu-content show">
+        <ul class="main-cat">
+            <li class="cat-item mm-nolistview">
+                <a rel="external" data-catid="1" href="javascript:void(0)" onclick="change_category(1)">女装</a>
+            </li>
+            <li class="cat-item ">
+                <a rel="external" data-catid="9" href="javascript:void(0)" onclick="change_category(9)">男装</a>
+            </li>
+            <li class="cat-item ">
+                <a rel="external" data-catid="10" href="javascript:void(0)" onclick="change_category(10)">内衣</a>
+            </li>
+            <li class="cat-item ">
+                <a rel="external" data-catid="2" href="javascript:void(0)" onclick="change_category(2)">母婴</a>
+            </li>
+            <li class="cat-item ">
+                <a rel="external" data-catid="3" href="javascript:void(0)" onclick="change_category(3)">化妆品</a>
+            </li>
+            <li class="cat-item ">
+                <a rel="external" data-catid="4" href="javascript:void(0)" onclick="change_category(4)">居家</a>
+            </li>
+            <li class="cat-item ">
+                <a rel="external" data-catid="5" href="javascript:void(0)" onclick="change_category(5)">鞋包配饰</a>
+            </li>
+            <li class="cat-item ">
+                <a rel="external" data-catid="6" href="javascript:void(0)" onclick="change_category(6)">美食</a>
+            </li>
+            <li class="cat-item ">
+                <a rel="external" data-catid="7" href="javascript:void(0)" onclick="change_category(7)">文体车品</a>
+            </li>
+            <li class="cat-item ">
+                <a rel="external" data-catid="8" href="javascript:void(0)" onclick="change_category(8)">数码家电</a>
+            </li>
+        </ul>
+        <span class="up-menu theme-color-1 theme-border-color-1" id="hide_menu">收起分类</span>
+    </div>
+</nav>
+
+</body>
+<script src="http://wechat.qmtk.com/static/personalcms/js/h5/jquery-3.0.0.min.js"></script>
+<script src="http://wechat.qmtk.com/static/personalcms/js/h5/pull.js"></script>
+<script src="http://wechat.qmtk.com/static/personalcms/js/h5/public.js"></script>
+<script src="user.js"></script>
+<script>
+    $(".search-input").focus(function () {
+        $(".search_div i").show()
+    })
+    $(".search_div i").click(function () {
+        $(".search-input").val("");
+    })
+
+    function his() {
+        history.pushState({title: '页面标题', html: '页面HTML'}, '', 'goos_details_page.html');
+        window.onpopstate = function (event) {
+            if (event && event.state) {
+                document.title = event.state.title;
+                document.body.innerHTML = event.state.html;
+            }
+        }
+    }
+
+    $(function () {
+        $("#category").val(getQueryString("category"));
+        initPageData();
+    })
+
+    function favorite() {
+        var page = $('#page').val().trim();
+        var category = $('#category').val().trim();
+        var sorting = $('#sorting').val().trim();
+        var user_type = $('#user_type').val().trim();
+        var zk_final_price_start = $('#zk_final_price_start').val().trim();
+        var zk_final_price_end = $('#zk_final_price_end').val().trim();
+        var categoryName = "领券直播";
+        switch (category) {
+            case('1'):
+                categoryName = '女装';
+                break;
+            case('2'):
+                categoryName = '母婴';
+                break;
+            case('3'):
+                categoryName = '化妆';
+                break;
+            case('4'):
+                categoryName = '居家';
+                break;
+            case('5'):
+                categoryName = '鞋包';
+                break;
+            case('6'):
+                categoryName = '美食';
+                break;
+            case('7'):
+                categoryName = '文体';
+                break;
+            case('8'):
+                categoryName = '数码';
+                break;
+            case('9'):
+                categoryName = '男装';
+                break;
+            case('10'):
+                categoryName = '内衣';
+                break;
+        }
+        $("#category_name").html(categoryName);
+        var parm = {
+            sorting: sorting,
+            page: page,
+            category: category,
+            user_type: user_type,
+            zk_final_price_start:zk_final_price_start,
+            zk_final_price_end: zk_final_price_end,
+            toDate:getNowFormatDate(),
+            user_id: user_id
+        };
+        $.ajax({
+            url: 'http://www.qmtk.com/hfive/tkGoodsList',
+            type: 'GET',
+            data: parm,
+            dataType: 'json',
+            success: favoriteBack
+        });
+
+    }
+
+    function change_category(category) {
+        $("#category").val(category);
+        $("#page").val("1");
+        favorite()
+    }
+
+</script>
+</html>

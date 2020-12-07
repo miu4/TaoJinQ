@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索</title>
+    <!--清楚缓存，禁止调取，桌面小图标标题-->
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="apple-mobile-web-app-title" content="首页">
+    <!--内核模式，渲染模式、适配-->
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=375,minimum-scale=0.4,maximum-scale=2,user-scalable=no">
+    <!--公用部分-->
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/h5_base.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/pull.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/swiper.min.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/h5_public_goodList.css">
+    <!--本页面-->
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/h5_search_page.css">
+</head>
+<body>
+
+<div class="main-title clearfix">
+    <a href="search_page.html" class="main-back"></a>
+    <div class="menu-cat">搜索</div>
+</div>
+
+<div class="search-box rim_t rim_b" style="margin-bottom: 0;">
+    <input type="text" id="name" onfocus="window.location.href='search_page.html'" style="width: 75%">
+    <s  id="clear" class="cha hide" style="right: 25px" onclick="window.location.href='search_page.html'"></s>
+</div>
+<div class="top" >
+    <ul class="select-warp">
+        <li id="zhonghepaixu" class="li_active"><a href="javascript:void(0)" onclick="comprehensive()">综合排序</a></li>
+        <li id="xiaoliang"><a href="javascript:void(0)" onclick="salesVolume()">销量</a></li>
+        <li id="jiage" class="price"><a href="javascript:void(0)" onclick="priceOrder()">价格
+            <div class="fr"><i id="up"></i><i id="down"></i></div>
+        </a></li>
+        <li class=" filtr" style="float: right;">
+            <a href="javascript:void(0)" onclick="screenShow()"><span>筛选</span><img src="http://wechat.qmtk.com/static/personalcms/images/h5/shaixuan.png" alt=""></a>
+        </li>
+    </ul>
+</div>
+<!-- 头部-->
+<div  id="wrapper" class="clearfix" >
+    <input type="hidden" id="sorting" value="0" >
+    <input type="hidden" id="page" value="1">
+    <input type="hidden" id="user_type" >
+    <input type="hidden" id="title" >
+    <ul class="goods-warp clearfix wrapper-inner" id="good_list">
+        <div id="pullUp" class="loading">
+            <span class="pullUpIcon"></span><span class="pullUpLabel">加载更多...</span>
+        </div>
+    </ul>
+    <div class="null hide" id="null">
+        <img src="http://wechat.qmtk.com/static/img/null.png" alt="" class="null-img">
+        <p>抱歉，没有相关宝贝</p>
+        <p>去下面逛逛</p>
+        <a href="index.html">进入首页</a>
+    </div>
+</div>
+
+<!--遮罩-->
+<div class="slide-top">
+    <img src="http://wechat.qmtk.com/static/personalcms/images/h5/top.png" alt="">
+</div>
+<div  class="screening-cover-warp hide" id="screening-cover-warp">
+    <div class="screening-cover clearfix" >
+        <p class="goods-title">搜索渠道</p>
+        <ul class="clearfix goods_ul">
+            <li id="suoyou" class="li_active" onclick="putUser_type()">所有</li>
+            <li id="taobao" onclick="putUser_type(0)">淘宝</li>
+            <li id="tianmao" onclick="putUser_type(1)">天猫</li>
+        </ul>
+
+        <div class="price-range">
+            <p>价格</p>
+            <s id="clear_start_price" class="hide"></s>
+            <input type="text" placeholder="输入最低价格" id="zk_final_price_start"><i></i><input type="text" placeholder="输入最高价格"
+                                                                                            id="zk_final_price_end">
+            <s id="clear_end_price" class="hide"></s>
+        </div>
+
+        <div class="screening-footer">
+            <span id="reset">重置</span>
+            <span class="sure" id="sure">确定</span>
+        </div>
+    </div>
+</div>
+</body>
+<script src="http://wechat.qmtk.com/static/personalcms/js/h5/jquery-3.0.0.min.js"></script>
+<script src="http://wechat.qmtk.com/static/personalcms/js/h5/pull.js"></script>
+<script src="http://wechat.qmtk.com/static/personalcms/js/h5/public.js"></script>
+<script src="http://wechat.qmtk.com/static/personalcms/pc/js/base64.js"></script>
+<script src="user.js"></script>
+<script>
+
+    $('.category-nav').each(function () {
+        new iScroll(this, {
+            hScroll: true,
+            vScroll: false,
+            hScrollbar:false,//是否显示水平滚动条
+            vScrollbar:false,//是否显示垂直滚动条
+            onBeforeScrollStart: function (e) {
+                if ( this.absDistX > (this.absDistY + 5 ) ) {
+                    // user is scrolling the x axis, so prevent the browsers' native scrolling
+                    e.preventDefault();
+                }
+            },
+            onTouchEnd: function () {
+                var self = this;
+                if (self.touchEndTimeId) {
+                    clearTimeout(self.touchEndTimeId);
+                }
+                self.touchEndTimeId = setTimeout(function () {
+                    self.absDistX = 0;
+                    self.absDistX = 0;
+                }, 600);
+            }
+        });
+    })
+
+    $(function () {
+        var title = getQueryString("title");
+        if (title != null && title != "") {
+            $("#name").val(Base.decode(getQueryString("title")));
+            $("#title").val(Base.decode(getQueryString("title")));
+            $("#clear").show();
+        }
+
+        initPageData();
+    })
+
+    function favorite() {
+        var page = $('#page').val();
+        var sorting = $('#sorting').val();
+        var user_type = $('#user_type').val();
+        var zk_final_price_start = $('#zk_final_price_start').val();
+        var zk_final_price_end = $('#zk_final_price_end').val();
+        var title = $('#title').val();
+        var parm = {
+            sorting: sorting,
+            page: page,
+            user_type: user_type,
+            zk_final_price_start: zk_final_price_start,
+            zk_final_price_end: zk_final_price_end,
+            title: title,
+            user_id: user_id
+        };
+
+        $.ajax({
+            url: 'http://www.qmtk.com/hfive/tkGoodsList',
+            type: 'GET',
+            data: parm,
+            dataType: 'json',
+            success: favoriteBack
+        });
+    }
+
+</script>
+</html>

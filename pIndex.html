@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content=""/>
+    <meta name="Description" content=""/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>优惠券首页</title>
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/pcV02/css/base.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/pcV02/css/public.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/pcV02/css/swiper.min.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/pcV02/css/goods/index.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/pcV02/css/iframe_css/header_iframe.css">
+    <link rel="icon" href="http://wechat.qmtk.com/static/pcV02/img/fbtk.ico">
+
+</head>
+<body>
+<ul class="fixation" style="display: block;">
+    <li class="person">
+        <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzgwMDgyODI4OV80Nzg2MjNfODAwODI4Mjg5XzJf" target=_blank><img
+                src="http://wechat.qmtk.com/static/pcV02/img/person.png"></a>
+    </li>
+    <li class="scrollTop"><img src="http://wechat.qmtk.com/static/pcV02/img/scrollTop.png" alt=""></li>
+</ul>
+<!--头部-->
+<div class="header">
+    <div class='w'>
+        <div class="fl pr" style="color: #999;" id="weixin_span">关注微信公众号：随时随地，想购就购！
+            <div class="inlineBlock weixin-top" style="color: #297ACC;">关注微信<img src="" alt="" class="hide"
+                                                                                 id="erweima"></div>
+        </div>
+        <div class="fr account">
+            <span onclick="SetHome(this,window.location)">设为主页</span>
+            <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzgwMDgyODI4OV80Nzg2MjNfODAwODI4Mjg5XzJf">购物遇到问题？请联系我
+                ></a>
+        </div>
+    </div>
+</div>
+<!--搜索-->
+<div style="background:#fff;" class="clearfix">
+    <div class="search-div">
+        <div class="w">
+            <a href="pIndex.html" class="logo fl"><img src="http://wechat.qmtk.com/static/pcV02/img/logo.png"
+                                                       class=" logo"></a>
+            <form id="form" action="super_search.html" method=get onsubmit="encodeTitle()">
+                <div class="fl search">
+                    <i></i>
+                    <input type="text" placeholder=" 请输入商品关键字或标题" id="name"
+                           onfocus="this.placeholder=''"
+                           onblur="this.placeholder='请输入商品关键字或标题'" onkeyup="$('#search_name').val($(this).val())">
+                    <input type="hidden" name="name" id="title">
+                    <a class="search-btn" onclick="$('#form').submit()"><i></i></a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--导航-->
+    <div class="nav">
+        <div class="w">
+            <ul>
+                <li id="all" class="all pr">
+                    <a href="pIndex.html" id="classify_nav" class="classify_nav nav-active" ><span></span>所有分类</a>
+                    <ul class="classify hide" id="categoryList" style="margin-top: 42px;">
+                        <li><a href="pGoodList.html?category=1" target=_blank><img
+                                src="http://wechat.qmtk.com/static/pcV02/img/women.png" alt="">女装</a></li>
+                        <li><a href="pGoodList.html?category=9" target=_blank><img
+                                src="http://wechat.qmtk.com/static/pcV02/img/men-clothing.png" alt="">男装</a></li>
+                        <li><a href="pGoodList.html?category=10" target=_blank><img
+                                src="http://wechat.qmtk.com/static/pcV02/img/underwear.png" alt="">内衣</a></li>
+                        <li><a href="pGoodList.html?category=2" target=_blank><img
+                                src="http://wechat.qmtk.com/static/pcV02/img/infant.png" alt="">母婴</a></li>
+                        <li><a href="pGoodList.html?category=3" target=_blank><img
+                                src="http://wechat.qmtk.com/static/pcV02/img/beauty.png" alt="">美妆</a></li>
+                        <li><a href="pGoodList.html?category=4" target=_blank><img
+                                src="http://wechat.qmtk.com/static/pcV02/img/living-at-home.png" alt="">居家</a></li>
+                        <li><a href="pGoodList.html?category=6" target=_blank><img
+                                src="http://wechat.qmtk.com/static/pcV02/img/cate.png" alt="">美食</a></li>
+                        <li><a href="pGoodList.html?category=5" target=_blank><img
+                                src="http://wechat.qmtk.com/static/pcV02/img/shoe.png" alt="">鞋包配饰</a></li>
+                        <li><a href="pGoodList.html?category=7" target=_blank><img
+                                src="http://wechat.qmtk.com/static/pcV02/img/stationery.png" alt="">文体车品</a></li>
+                        <li><a href="pGoodList.html?category=8" target=_blank><img
+                                src="http://wechat.qmtk.com/static/pcV02/img/code.png" alt="">数码家电</a></li>
+                    </ul>
+                </li>
+                <li><a href="pGoodList.html" id="goods_list" target=_blank>领券优惠直播</a></li>
+                <li><a href="newGoods.html" id="news_recommend" target=_blank>每日上新</a></li>
+                <li><a href="nine_nine.html" id="nine_nine"  target=_blank>9块9</a></li>
+                <li><a href="popularity.html" id="popularity" target=_blank>超级人气</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div class="banner">
+    <!-- Swiper -->
+    <div class="swiper-container swiper1 ac">
+        <div class="swiper-wrapper">
+
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination swiper-pagination1"></div>
+        <!--<div class="inlineBlock chearfix arrow" style="width: 780px;position: relative; height: 68px;z-index: 99;margin-top: 166px;">-->
+        <!--<div class="swiper-button-prev"></div>-->
+        <!--<div class="swiper-button-next"></div>-->
+        <!--</div>-->
+    </div>
+</div>
+<!--注意-->
+<div class="w guang_img">
+    <img src="http://wechat.qmtk.com/static/pcV02/img/smallBanner01.png" alt="" target=_blank>
+    <img src="http://wechat.qmtk.com/static/pcV02/img/smallBanner02.png" alt="" target=_blank>
+    <img src="http://wechat.qmtk.com/static/pcV02/img/smallBanner03.png" alt="" target=_blank>
+    <img src="http://wechat.qmtk.com/static/pcV02/img/smallBanner04.png" alt="" target=_blank>
+</div>
+
+
+<div class="box-one w clearfix">
+    <div class="box-one-t">
+        <span class="box-one-title"><span>精选频道</span><span
+                style="color: #666;font-size: 16px;margin-left: 20px;">发现品质生活</span></span>
+    </div>
+    <div class=" box-one-c w chearfix">
+        <a href="pGoodList.html" target=_blank><img src="http://wechat.qmtk.com/static/personalcms/images/h5/new2.png"
+                                      alt=""></a>
+        <a href="newGoods.html" target=_blank><img src="http://wechat.qmtk.com/static/pcV02/img/new1.png" alt=""></a>
+
+        <a href="nine_nine.html" target=_blank><img src="http://wechat.qmtk.com/static/pcV02/img/new3.png"
+                                                       alt=""></a>
+        <a href="popularity.html" target=_blank><img src="http://wechat.qmtk.com/static/pcV02/img/new4.png" alt=""
+                                             style="margin-right: 0;"></a>
+    </div>
+</div>
+
+
+<!--领券优惠直播 主题部分-->
+<div class="box-shell clearfix" name="lingquan">
+    <div class="box-shell-t w">
+        <span class="box-shell-title"><span>领券优惠直播</span><span style="color: #666;font-size: 16px;margin-left: 20px;">全世界好货，一网打尽</span></span>
+        <a href="pGoodList.html" class="more fr" target=_blank>进入优惠直播&gt;</a>
+    </div>
+    <input type="hidden" id="page" name="page">
+    <input type="hidden" id="totalPage">
+    <input type="hidden" id="total">
+    <div class="box-tow-warp chearfix" id="goods-list">
+    </div>
+</div>
+<!--页数-->
+<div class="page " id="pageDiv"></div>
+<!--没有数据-->
+<div class="null-data hide" id="null">
+    <img src="http://wechat.qmtk.com/static/pcV02/img/null.png" alt="">
+    <p class="null-text">抱歉，没有找到你想要的商品</p>
+</div>
+
+<div class="search_fix hide">
+    <div class=" search inlineBlock" style="margin: 0;width: 470px;margin-top: 6px;">
+        <i></i>
+        <input style="width: 400px;" id="search_name" type="text" placeholder=" 请输入商品关键字或标题"
+               onfocus="this.placeholder=''" onblur="this.placeholder='请输入商品关键字或标题'" onkeyup="change_name()">
+        <a class="search-btn" onclick="$('#form').submit()"><i></i></a>
+    </div>
+</div>
+<!--底部-->
+
+<iframe src="footer_iframe.html" scrolling="no" style="margin-bottom:0px; margin:0px; padding:0px" frameborder="0"
+        width=100% height=168 marginwidth=0 marginheight=0 vsspace="0" hspace="0"></iframe>
+</body>
+<script src="http://wechat.qmtk.com/static/pcV02/js/third_party_plugin/jquery-1.12.4.min.js"></script>
+<!-- 懒加载 -->
+<script src="http://wechat.qmtk.com/static/pcV02/js/third_party_plugin/lazyload.js"></script>
+<script src="http://wechat.qmtk.com/static/pcV02/js/third_party_plugin/swiper.min.js"></script>
+<script src="http://wechat.qmtk.com/static/personalcms/js/h5/mobileOrPc3.js"></script>
+<script src="http://wechat.qmtk.com/static/personalcms/pc/js/base64.js"></script>
+<script src="http://wechat.qmtk.com/static/personalcms/js/pc/public.js"></script>
+<script src="http://wechat.qmtk.com/static/personalcms/js/pc/page.js"></script>
+<script src="user.js"></script>
+
+<script>
+    function banner_show() {
+        $.ajax({
+            url: "http://www.qmtk.com/cms/getBannerImg?type=3",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $.each(data, function (index, content) {
+                    $(".swiper-wrapper").append("<div class=\"swiper-slide\" >\n" +
+                        "                        <a target=_blank href=" + content.link_url + ">\n" +
+                        "                            <img  src=" + content.banner_url + " >\n" +
+                        "                        </a>\n" +
+                        "                    </div>")
+                })
+
+                //banner 轮播
+                var swiper1 = new Swiper('.swiper1', {
+//                    touchMoveStopPropagation: false, //!*阻止默认事件*!/
+                    pagination: '.swiper-pagination1',
+                    preventClicks: false,
+                    paginationClickable: true, //!*点击小点*
+//                    /!*彼此之间的单位距离 *!
+                    //        spaceBetween: 30,
+                    loop: true, //!*循环*!/
+//                    /!*箭头*!/
+                    prevButton: '.swiper-button-prev',
+                    nextButton: '.swiper-button-next',
+                    effect: 'fade',
+                    grabCursor: true, //设置小手
+                    autoplay: 2000,//轮播
+                    autoplayDisableOnInteraction: false,
+                });
+            }
+
+        })
+    }
+
+    var flag = 0;
+
+    $(document).ready(function () {
+        get_erweima()
+        show_good();
+        banner_show();
+    });
+
+    function show_good(page) {
+        flag = flag + 1;
+        var parm = {
+            sorting: 1,
+            page: page,
+            pageSize: 100,
+            user_id: user_id
+        };
+        $.ajax({
+            url: 'http://www.qmtk.com/hfive/tkGoodsList',
+            type: 'GET',
+            data: parm,
+            dataType: 'json',
+            success: show_goodBack
+        });
+    }
+
+
+
+    function show_goodBack(data) {
+        var totalPage = data.totalPage;
+        var page = data.page;
+        var total = data.total;
+        $("#totalPage").val(totalPage);
+        $("#page").val(page);
+        $("#total").val(total);
+        //初始化商品和默认样式，等待ajax渲染 begin
+        if (data.page == 1) {
+            $('#goods-list').html('');
+        }
+
+        //初始化商品和默认样式，等待ajax渲染 end
+        var goodsHtml = [];
+        if (data.rows != null) {
+            var goodList = data.rows;
+            for (var i = 0; i < goodList.length; i++) {
+                goodsHtml.push("<div class='box-tow'>");
+                goodsHtml.push("<a target=_blank href='pGood.html?qmtk_good_id=" + goodList[i].qmtk_good_id + "'>");
+                goodsHtml.push("<img data-original='" + goodList[i].pict_url + "' alt='' class='lazy'>");
+                goodsHtml.push("<div class='price'>");
+                goodsHtml.push("<span class='price_rm'><b style=\"font-family: 'Microsoft YaHei'\">￥</b></span><span class='last-price'>");
+                goodsHtml.push(goodList[i].zk_final_price.toFixed(2));
+                goodsHtml.push("</span>券后价<s><b style=\"font-family: 'Microsoft YaHei'\">￥</b>");
+                goodsHtml.push(goodList[i].reserve_price.toFixed(2));
+                goodsHtml.push("</s>");
+                goodsHtml.push("</div>");
+                goodsHtml.push("<div class='box-tow-c-title'><i></i><span class='fl'>");
+                goodsHtml.push(goodList[i].title);
+                goodsHtml.push("</span></div>");
+                goodsHtml.push("<div class='sales'>");
+                goodsHtml.push("<span class='sales-text'>销量</span>");
+                goodsHtml.push(goodList[i].volume);
+                goodsHtml.push("<div class='sales-icon'><i></i><span><b style=\"font-family: 'Microsoft YaHei'\">￥</b>");
+                goodsHtml.push(goodList[i].coupon_price.toFixed(2));
+                goodsHtml.push("</span></div>");
+                goodsHtml.push("</div>");
+                goodsHtml.push("</a>");
+                goodsHtml.push("</div>");
+            }
+            $('#goods-list').html(goodsHtml.join(""));
+            if (totalPage != 1) {
+                fenye();
+            } else {
+                $('.lt').attr('src', 'http://wechat.qmtk.com/static/pcstatic/img/lt.png');
+                $('.gt').attr('src', 'http://wechat.qmtk.com/static/pcstatic/img/gt1.png');
+                $("#pageDiv").html();
+            }
+
+            if (flag != 1) {
+                $(document).scrollTop(1100)
+            }
+
+            $(" img.lazy").lazyload({
+                placeholder: "http://wechat.qmtk.com/static/pcV02/img/download2.gif",
+                threshold: 5,
+                effect: "show",
+            });
+        }else{
+            $("#good_box").hide();
+            $("#null").show();
+            $("#pageDiv").html("");
+            $('.lt').attr('src', 'http://wechat.qmtk.com/static/pcstatic/img/lt.png');
+            $('.gt').attr('src', 'http://wechat.qmtk.com/static/pcstatic/img/gt1.png');
+        }
+    }
+
+
+</script>
+</html>

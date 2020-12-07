@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>领券直播</title>
+    <!--清楚缓存，禁止调取，桌面小图标标题-->
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="apple-mobile-web-app-title" content="首页">
+    <!--内核模式，渲染模式、适配-->
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=375,minimum-scale=0.4,maximum-scale=2,user-scalable=no">
+    <!--公用部分-->
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/base.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/pull.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/swiper.min.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/h5_public_goodList.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/h5_public_col.css">
+    <style>
+        .category-nav ul {
+            min-width: 730px;
+            height: 40px;
+            line-height: 40px;
+            padding-left: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="main-title clearfix">
+    <a href="javascript:window.history.back()" class="main-back"></a>
+    <div class="menu-cat">领券直播</div>
+</div>
+<div class="category-nav">
+    <ul id="categoryLi">
+        <li id="category0" class="touch_active" onclick="change_category_touch()"> 全部</li>
+
+        <li id="category1" class="" onclick="change_category_touch(1)"> 女装</li>
+
+        <li id="category2" class="" onclick="change_category_touch(9)"> 男装</li>
+
+        <li id="category3" class="" onclick="change_category_touch(10)"> 内衣</li>
+
+        <li id="category4" class="" onclick="change_category_touch(5)"> 鞋包配饰</li>
+
+        <li id="category5" class="" onclick="change_category_touch(2)"> 母婴</li>
+
+        <li id="category6" class="" onclick="change_category_touch(3)"> 美妆</li>
+
+        <li id="category7" class="" onclick="change_category_touch(4)"> 居家日用</li>
+
+        <li id="category8" class="" onclick="change_category_touch(6)"> 美食</li>
+
+        <li id="category9" class="" onclick="change_category_touch(7)"> 文体车品</li>
+
+        <li id="category10" class="" onclick="change_category_touch(8)"> 数码家电</li>
+    </ul>
+</div>
+
+
+<div id="wrapper" class="clearfix" style="margin-top: 84px;position: relative;">
+    <input type="hidden" id="page" value="1">
+    <input type="hidden" id="user_type">
+    <input type="hidden" id="category">
+    <input type="hidden" id="sorting" value="0">
+    <ul class="goods-warp clearfix " id="good_list">
+
+    </ul>
+    <div class="null hide" id="null">
+        <img src="http://wechat.qmtk.com/static/img/null.png" alt="" class="null-img">
+        <p>抱歉，没有相关宝贝</p>
+        <p>去下面逛逛</p>
+        <a href="index.html">进入首页</a>
+    </div>
+</div>
+
+<div class="slide-top">
+    <img src="http://wechat.qmtk.com/static/personalcms/images/h5/top.png" alt="">
+</div>
+</body>
+<script src="http://wechat.qmtk.com/static/js/jquery-3.0.0.min.js"></script>
+<script src="http://wechat.qmtk.com/static/js/pull.js"></script>
+<script src="http://wechat.qmtk.com/static/js/clipboard.min.js"></script>
+<script src="http://wechat.qmtk.com/static/personalcms/js/h5/mobileOrPc3.js"></script>
+<script src="http://wechat.qmtk.com/static/personalcms/js/h5/public.js"></script>
+<script src="user.js"></script>
+<script>
+
+    $(function () {
+        initPageData();
+    });
+</script>
+</html>

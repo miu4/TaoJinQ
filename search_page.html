@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索</title>
+    <!--清楚缓存，禁止调取，桌面小图标标题-->
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="apple-mobile-web-app-title" content="首页">
+    <!--内核模式，渲染模式、适配-->
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=375,minimum-scale=0.4,maximum-scale=2,user-scalable=no">
+    <!--公用部分-->
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/h5_base.css">
+    <!--本页面-->
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/personalcms/css/h5/h5_search_page.css">
+</head>
+<body>
+
+<div class="main-title clearfix">
+    <a href="index.html" class="main-back"></a>
+    <div class="menu-cat">搜索</div>
+</div>
+<div class="search-box rim_t rim_b">
+    <form action="search_page_list.html" method="get" onsubmit="return encodeTitle()" id="form">
+        <input type="text" placeholder="输入商品标题或关键字" id="name" onkeyup="showClear()">
+        <input type="hidden" placeholder="输入商品标题或关键字" id="title" name="title">
+        <s id="clear" class="cha hide" style="right: 85px" onclick="$('#name').val(''),$(this).hide()"></s>
+    </form>
+    <i onclick="goToList()"></i>
+</div>
+<div class="ac">
+    <img src="http://wechat.qmtk.com/static/personalcms/images/h5/hot_title.png" alt="" class="hot_title">
+</div>
+<ul class="hot-list clearfix" id="word_list">
+
+</ul>
+</body>
+<script src="http://wechat.qmtk.com/static/personalcms/js/h5/jquery-3.0.0.min.js"></script>
+<script src="http://wechat.qmtk.com/static/personalcms/js/h5/public.js"></script>
+<script src="http://wechat.qmtk.com/static/personalcms/pc/js/base64.js"></script>
+<script>
+
+    $(function () {
+        var wordHtml = [];
+        $.ajax({
+            url: "http://www.qmtk.com/cms/getWordSetting",
+            dataType: "json",
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    wordHtml.push("<li  id=i><a href='search_page_list.html?title="+Base.encode(data[i].word)+"'>"+data[i].word+"</a></li>");
+                }
+                $('#word_list').append(wordHtml.join(''));
+                $(".hot-list li a").click(function () {
+                    $(".hot-list li a").removeClass("active");
+                    $(this).addClass("active");
+                })
+            }
+        })
+    })
+
+    function goToList(){
+        $("#form").submit();
+    }
+
+
+</script>
+</html>

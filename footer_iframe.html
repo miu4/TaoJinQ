@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/pcV02/css/base.css">
+    <link rel="stylesheet" href="http://wechat.qmtk.com/static/pcV02/css/iframe_css/footer_iframe.css">
+    <script src="http://wechat.qmtk.com/static/personalcms/pc/js/third_party_plugin/jquery-1.12.4.min.js"></script>
+    <script src="user.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                url:"http://www.qmtk.com/websiteSetting/getUserWebsiteSettingInfo",
+                data:{"user_id":user_id},
+                dataType:"json",
+                type:"post",
+                success:function (data) {
+                    if(data){
+                        $("#web_name").html(data.website_name);
+                        $("#icp_code").html(data.icp_code)
+                        $("#erweima").attr("src",data.erweima_url) ;
+                        if(data.erweima_url == null || data.erweima_url.trim() == ""){
+                            $(".attention").hide();
+                        }
+                    }
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<!--底部-->
+<div class="footer">
+    <div class="w">
+        <div class="fl friend clearfix">
+            <span class="fl line-foot"></span>
+            <p>网站地图</p>
+            <a href="pGoodList.html" target="_blank">领券优惠直播</a><a href="newGoods.html" target="_blank">每日上新</a><a href="nine_nine.html" target="_blank">9块9</a><a href="popularity.html" target="_blank" nof>超级人气</a>
+        </div>
+        <div class="fr attention">
+            <div class="fl">
+                扫一扫关注<br>
+                微信公众号
+            </div>
+            <img src="" alt="" id="erweima">
+        </div>
+    </div>
+    <p class="footer-copyright ac">
+        <a href="http://www.miitbeian.gov.cn" target="_blank"><img src="http://wechat.qmtk.com/static/pcV02/img/icp_icon.png" alt="" style="margin-right:5px;">版权所有<span style="font-family: 'Microsoft YaHei'" id="web_name"> © </span> - <span style="font-family: 'Microsoft YaHei'" id="icp_code" ></span></a>
+    </p>
+</div>
+</body>
+</html>
